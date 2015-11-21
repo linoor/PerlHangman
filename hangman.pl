@@ -1,7 +1,10 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 use strict;
+use warnings;
+use diagnostics;
+use Pics;
 
-my ($miss, $guesses, $guess, @build, $tries, @guessed, @wordbank);
+my ($miss, $guesses, $guess, @hidden, $tries, @guessed, @wordbank);
 
 sub get_random_word{
 	my @wordbank = @_;
@@ -12,9 +15,8 @@ sub get_random_word{
 @wordbank = qw(cubicle scramble deduction envelope century ridiculous);
 my @word = get_random_word(@wordbank);
 
-@build = ("_") x scalar(@word);
+@hidden = ("_") x scalar(@word);
 
-$_ = join('', @word);
 $miss = 0;
 $guesses = 0;
 $tries = 0;
@@ -22,4 +24,4 @@ $tries = 0;
 print "Welcome to hangman\n";
 print "Your word has "; print scalar(@word); print " guesses";
 
-
+print @hangmanpics;
