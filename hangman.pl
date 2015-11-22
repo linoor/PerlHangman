@@ -1,9 +1,15 @@
 #!/usr/bin/perl
+# projekt zaliczeniowy w perlu
 # Michał Pomarański
 # grupa nr 3
 
 use Pics;
 use strict;
+use Getopt::Long;
+
+my $help = 0;
+GetOptions ('help' => \$help,);
+$help and &ShowHelp();
 
 my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank, $letter);
 
@@ -12,6 +18,19 @@ sub get_random_word{
 	my @wordbank = @{$ref};
 	my $selected = rand(scalar(@wordbank));
 	return $wordbank[$selected];
+}
+
+sub ShowHelp {
+	print "\n";
+	print "###################################################################\n";
+	print "#                         Gra Wisielec.                           #\n";
+	print "#                                                                 #\n";
+	print "# Uruchamianie gry za pomocą 'perl hangman.pl'.                   #\n";
+	print "# Gra polega na zgadywaniu wylosowanego słowa poprzez podawanie   #\n";
+	print "# pojedyńczych liter. W przypadku zbyt wielu pomyłek gra zostaje  #\n";
+	print "# zakończona.                                                     #\n";
+	print "###################################################################\n\n";
+	exit;
 }
 
 
