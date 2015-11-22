@@ -109,7 +109,7 @@ while (1) {
 
 		# check if the player has won
 		my $found_all_letters = 1;
-		for my $c ($secret_word) {
+		for my $c (split //, $secret_word) {
 			if (!($c ~~ @correct_letters)) {
 				$found_all_letters = "";
 				last;
