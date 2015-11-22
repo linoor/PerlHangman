@@ -4,7 +4,7 @@ use warnings;
 use diagnostics;
 use Pics;
 
-my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank);
+my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank, $letter);
 
 sub get_random_word{
 	my @wordbank = @_;
@@ -13,11 +13,13 @@ sub get_random_word{
 }
 
 sub display_board{
-	my ($hangman_pics, $missed_letters, $correct_letters, $secret_word) = @_;
-	my @hangman_pics = @{$hangman_pics};
-	my @missed_letters = @{$missed_letters};
+	my ($hangman_pics, $missed_letters, $correct_letters, $secret) = @_;
+	my @hangman_pics    = @{$hangman_pics};
+	my @missed_letters  = @{$missed_letters};
 	my @correct_letters = @{$correct_letters};
-	my @secret_word = @{$secret_word};
+	my $secret_word     = ${$secret};
+
+	print $secret_word;
 
 	print $hangman_pics[scalar(@missed_letters)];
 	print "\n";
@@ -31,13 +33,19 @@ sub display_board{
 
 	my @blanks = ("_") x length($secret_word);
 
-	for (my $i=0; $i <= scalar(@secret_word); $i++) {
-		if (index(@correct_letters, $secret_word[$i]) != -1) {
-			$blanks[$i] = $secret_word[$i];
-		}	
+	for (my $i=0; $i < length($secret_word); $i++) {
 	}
 
-	foreach my $letter (@blanks){
+	my $interspersed = ""; 
+	foreach my $c(split //, $secret_word) {
+		if ($c ~~ $correct_letters) {
+			$interspersed = $interspersed.$c;
+		} else {
+			$interspersed = $interspersed."_";
+		}
+	}
+
+	foreach $letter (split //, $interspersed){
 		print $letter;
 		print " ";
 	}
@@ -45,9 +53,9 @@ sub display_board{
 
 my @missed_letters = ("a", "b");
 my @correct_letters = ("m");
-my @secret_word = "loremipsum";
+my $secret_word = "loremipsum";
 
-display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \@secret_word);
+display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 
 @wordbank = qw(cubicle scramble deduction envelope century ridiculous);
 my @word = get_random_word(@wordbank);
