@@ -22,20 +22,6 @@ sub get_random_word{
 	return $wordbank[$selected];
 }
 
-sub ShowHelp {
-	print "\n";
-	print "###################################################################\n";
-	print "#                         Gra Wisielec.                           #\n";
-	print "#                                                                 #\n";
-	print "# Uruchamianie gry za pomocą 'perl hangman.pl'.                   #\n";
-	print "# Gra polega na zgadywaniu wylosowanego słowa poprzez podawanie   #\n";
-	print "# pojedyńczych liter. W przypadku zbyt wielu pomyłek gra zostaje  #\n";
-	print "# zakończona.                                                     #\n";
-	print "# Gra pobiera losowe angielskie słowa z /usr/share/dict/words     #\n";
-	print "###################################################################\n\n";
-	exit;
-}
-
 sub display_board{
 	my ($hangman_pics, $missed_letters, $correct_letters, $secret) = @_;
 	my @hangman_pics    = @{$hangman_pics};
