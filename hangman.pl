@@ -144,6 +144,7 @@ while (1) {
 		if (scalar(@missed_letters) == (scalar(@Pics::hangmanpics)-1)) {
 			display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 			print "You have run out of guesses! You lose!\n";
+			print "The word was: $secret_word\n";
 			$game_is_done = 1;
 		}
 	}
