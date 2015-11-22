@@ -71,6 +71,12 @@ sub getGuess{
 	}
 }
 
+sub playAgain{
+	print "Do you want to play again? (yes or no) ";
+	my $again = <>;
+	return $again =~ /^y/;
+}
+
 my @missed_letters = ("a", "b");
 my @correct_letters = ("m");
 my $secret_word = "loremipsum";
@@ -87,3 +93,4 @@ print "Your word has "; print scalar(@word); print " guesses";
 
 display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 getGuess(@missed_letters);
+print playAgain();
