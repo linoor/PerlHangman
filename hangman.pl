@@ -1,7 +1,8 @@
 #!/usr/bin/perl
+# Michał Pomarański
+# grupa nr 3
+
 use strict;
-use warnings;
-use diagnostics;
 use Pics;
 
 my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank, $letter);
@@ -19,8 +20,6 @@ sub display_board{
 	my @missed_letters  = @{$missed_letters};
 	my @correct_letters = @{$correct_letters};
 	my $secret_word     = ${$secret};
-
-	print "DEBUG secret word: $secret_word";
 
 	print $hangman_pics[scalar(@missed_letters)];
 	print "\n";
@@ -92,8 +91,6 @@ my @correct_letters = ("");
 my $secret_word = get_random_word(\@wordbank);
 my $game_is_done = ""; # false
 
-print "DEBUG chosen word: $secret_word";
-
 while (1) {
 	display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 
@@ -102,9 +99,8 @@ while (1) {
 	push @tmp_array, @correct_letters;
 	my $guess = get_guess(\@tmp_array);
 
-	print "DEBUG guess $guess";
 	if (index($secret_word, $guess) != -1) {
-		print "DEBUG i'm here\n";
+
 		push @correct_letters, $guess;
 
 		# check if the player has won
