@@ -7,7 +7,6 @@ our @EXPORT = qw(@hangmanpics);
 our @EXPORT_OK = qw(@hangmanpics);
 
 our @hangmanpics = ("
-
    +---+
    |   |
        |
@@ -15,7 +14,6 @@ our @hangmanpics = ("
        |
        |
  =========", "
-
    +---+
    |   |
    O   |
@@ -23,7 +21,6 @@ our @hangmanpics = ("
        |
        |
  =========", "
-
    +---+
    |   |
    O   |
@@ -31,7 +28,6 @@ our @hangmanpics = ("
        |
        |
  =========", "
-
    +---+
    |   |
    O   |
@@ -39,7 +35,6 @@ our @hangmanpics = ("
        |
        |
  =========", "
-
    +---+
    |   |
    O   |
@@ -47,7 +42,6 @@ our @hangmanpics = ("
        |
        |
  =========", "
-
    +---+
    |   |
    O   |
@@ -55,7 +49,6 @@ our @hangmanpics = ("
   /    |
        |
  =========", "
-
    +---+
    |   |
    O   |

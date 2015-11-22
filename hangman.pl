@@ -33,13 +33,14 @@ sub ShowHelp {
 	exit;
 }
 
-
 sub display_board{
 	my ($hangman_pics, $missed_letters, $correct_letters, $secret) = @_;
 	my @hangman_pics    = @{$hangman_pics};
 	my @missed_letters  = @{$missed_letters};
 	my @correct_letters = @{$correct_letters};
 	my $secret_word     = ${$secret};
+
+	system 'clear';
 
 	print $hangman_pics[scalar(@missed_letters)];
 	print "\n";
