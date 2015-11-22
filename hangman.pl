@@ -30,7 +30,7 @@ sub ShowHelp {
 	print "# Gra polega na zgadywaniu wylosowanego słowa poprzez podawanie   #\n";
 	print "# pojedyńczych liter. W przypadku zbyt wielu pomyłek gra zostaje  #\n";
 	print "# zakończona.                                                     #\n";
-	print "# Gra pobiera losowe słowa z /usr/share/dict/words				 #\n";
+	print "# Gra pobiera losowe angielskie słowa z /usr/share/dict/words     #\n";
 	print "###################################################################\n\n";
 	exit;
 }
