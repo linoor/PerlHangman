@@ -6,6 +6,7 @@
 use Pics;
 use strict;
 use Getopt::Long;
+use List::Util qw/shuffle/;
 
 my $help = 0;
 GetOptions ('help' => \$help,);
@@ -29,6 +30,7 @@ sub ShowHelp {
 	print "# Gra polega na zgadywaniu wylosowanego słowa poprzez podawanie   #\n";
 	print "# pojedyńczych liter. W przypadku zbyt wielu pomyłek gra zostaje  #\n";
 	print "# zakończona.                                                     #\n";
+	print "# Gra pobiera losowe słowa z /usr/share/dict/words				 #\n";
 	print "###################################################################\n\n";
 	exit;
 }
@@ -99,7 +101,28 @@ sub playAgain{
 	return $again =~ /^y/;
 }
 
-@wordbank = qw(cubicle scramble deduction envelope century ridiculous);
+sub generate_words{
+	my $wordlist = '/usr/share/dict/words';
+
+	my $length = 10;
+	my $numwords = 10;
+
+	my @words;
+
+	open WORDS, '<', $wordlist or die "Cannot open $wordlist:$!";
+
+	while (my $word = <WORDS>) {
+		chomp($word);
+		push @words, $word if (length($word) == $length);
+	}
+
+	close WORDS;
+
+	my @shuffled_words = shuffle(@words);
+	return @shuffled_words;
+}
+
+@wordbank = generate_words();
 
 $miss = 0;
 $guesses = 0;
