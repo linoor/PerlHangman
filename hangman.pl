@@ -2,8 +2,8 @@
 # Michał Pomarański
 # grupa nr 3
 
-use strict;
 use Pics;
+use strict;
 
 my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank, $letter);
 
@@ -13,6 +13,7 @@ sub get_random_word{
 	my $selected = rand(scalar(@wordbank));
 	return $wordbank[$selected];
 }
+
 
 sub display_board{
 	my ($hangman_pics, $missed_letters, $correct_letters, $secret) = @_;
@@ -92,7 +93,7 @@ my $secret_word = get_random_word(\@wordbank);
 my $game_is_done = ""; # false
 
 while (1) {
-	display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
+	display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 
 	my @tmp_array = ();
 	push @tmp_array, @missed_letters;
@@ -120,8 +121,8 @@ while (1) {
 		push @missed_letters, $guess;
 
 		# check that the player has guessed too many times and lost
-		if (scalar(@missed_letters) == (scalar(@hangmanpics)-1)) {
-			display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
+		if (scalar(@missed_letters) == (scalar(@Pics::hangmanpics)-1)) {
+			display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 			print "You have run out of guesses! You lose!\n";
 			$game_is_done = 1;
 		}
