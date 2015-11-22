@@ -51,11 +51,29 @@ sub display_board{
 	}
 }
 
+sub getGuess{
+	my $alreadyGuessed = shift;
+
+	while(1) {
+		print "Guess a letter:\n";
+		$guess = <>;
+		$guess = lc($guess);
+		chomp($guess);
+		if (length($guess) != 1) {
+			print "Please enter a single letter.\n";
+		} elsif ($guess ~~ $alreadyGuessed) {
+			print "You have already guesses that letter. Choose again.\n";
+		} elsif (!$guess ~~ split //, "qwertyuiopasdfghjklzxcvbnm") {
+			print "Please enter a letter.\n";
+		} else {
+			return $guess;
+		}
+	}
+}
+
 my @missed_letters = ("a", "b");
 my @correct_letters = ("m");
 my $secret_word = "loremipsum";
-
-display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
 
 @wordbank = qw(cubicle scramble deduction envelope century ridiculous);
 my @word = get_random_word(@wordbank);
@@ -66,3 +84,6 @@ $tries = 0;
 
 print "Welcome to hangman\n";
 print "Your word has "; print scalar(@word); print " guesses";
+
+display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
+getGuess(@missed_letters);
