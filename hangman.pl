@@ -125,8 +125,8 @@ while (1) {
 
 		# check that the player has guessed too many times and lost
 		if (scalar(@missed_letters) == (scalar(@hangmanpics)-1)) {
-			display_board(\@hangmanpics, \@missed_letters, \@correct_letters, $secret_word);
-			print "You have run out of guesses!\n";
+			display_board(\@hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
+			print "You have run out of guesses! You lose!\n";
 			$game_is_done = 1;
 		}
 	}
