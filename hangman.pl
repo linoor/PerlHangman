@@ -7,6 +7,7 @@ use Pics;
 use strict;
 use Getopt::Long;
 use List::Util qw/shuffle/;
+no warnings 'experimental';
 
 my $help = 0;
 GetOptions ('help' => \$help,);
