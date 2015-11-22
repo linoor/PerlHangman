@@ -47,7 +47,7 @@ sub display_board{
 	print $hangman_pics[scalar(@missed_letters)];
 	print "\n";
 
-	print "Missed letters: ";
+	print "Nieprawidłowe litery: ";
 	foreach my $letter (@missed_letters){
 		print $letter;
 		print " ";
@@ -79,16 +79,16 @@ sub get_guess{
 	my @already_guessed = shift;
 
 	while(1) {
-		print "Guess a letter:\n";
+		print "Podaj literę:\n";
 		$guess = <>;
 		$guess = lc($guess);
 		chomp($guess);
 		if (length($guess) != 1) {
-			print "Please enter a single letter.\n";
+			print "Podaj tylko jedną literę.\n";
 		} elsif ($guess ~~ @already_guessed) {
-			print "You have already guesses that letter. Choose again.\n";
+			print "Ta litera już została użyta. Wybierz jeszcze raz.\n";
 		} elsif (!$guess ~~ split //, "qwertyuiopasdfghjklzxcvbnm") {
-			print "Please enter a letter.\n";
+			print "Wybierz LITERĘ.\n";
 		} else {
 			return $guess;
 		}
@@ -96,9 +96,9 @@ sub get_guess{
 }
 
 sub playAgain{
-	print "Do you want to play again? (yes or no) ";
+	print "Czy chcesz zagrać jeszcze raz? (tak/nie)";
 	my $again = <>;
-	return $again =~ /^y/;
+	return $again =~ /^t/;
 }
 
 sub generate_words{
@@ -109,7 +109,7 @@ sub generate_words{
 
 	my @words;
 
-	open WORDS, '<', $wordlist or die "Cannot open $wordlist:$!";
+	open WORDS, '<', $wordlist or die "Nie można otworzyć $wordlist:$!";
 
 	while (my $word = <WORDS>) {
 		chomp($word);
@@ -128,7 +128,7 @@ $miss = 0;
 $guesses = 0;
 $tries = 0;
 
-print "Welcome to hangman\n";
+print "#### Wisielec ####\n";
 
 my @missed_letters = ("");
 my @correct_letters = ("");
@@ -157,7 +157,7 @@ while (1) {
 		}
 
 		if ($found_all_letters) {
-			print "Yes! The secret word is $secret_word! You have won!\n";
+			print "Brawo! Ukryte słowo to: $secret_word! Wygrałeś!\n";
 			$game_is_done = 1;
 		}
 	} else {
@@ -166,8 +166,8 @@ while (1) {
 		# check that the player has guessed too many times and lost
 		if (scalar(@missed_letters) == (scalar(@Pics::hangmanpics)-1)) {
 			display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
-			print "You have run out of guesses! You lose!\n";
-			print "The word was: $secret_word\n";
+			print "Skończyły Ci się próby! Przegrałeś!\n";
+			print "Ukrytym słowem było: $secret_word\n";
 			$game_is_done = 1;
 		}
 	}
