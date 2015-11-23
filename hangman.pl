@@ -3,6 +3,8 @@
 # Michał Pomarański
 # grupa nr 3
 
+use FindBin;
+use lib $FindBin::Bin;
 use Pics;
 use strict;
 use Getopt::Long;
