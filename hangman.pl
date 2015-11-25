@@ -87,7 +87,7 @@ sub get_guess{
 }
 
 sub playAgain{
-	print "Czy chcesz zagrać jeszcze raz? (tak/nie)";
+	print "Czy chcesz zagrać jeszcze raz? (tak/nie) ";
 	my $again = <>;
 	return $again =~ /^t/;
 }
