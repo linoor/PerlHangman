@@ -140,7 +140,6 @@ my $game_is_done = ""; # false
 
 while (1) {
 	display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
-	print $secret_word;
 
 	my @tmp_array = ();
 	push @tmp_array, @missed_letters;
