@@ -102,7 +102,7 @@ sub generate_words{
 
 	while (my $word = <WORDS>) {
 		chomp($word);
-		push @words, $word if (length($word) == $length);
+		push @words, $word if (length($word) == $length and index($word, "'") == -1);
 	}
 
 	close WORDS;
