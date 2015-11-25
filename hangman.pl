@@ -12,7 +12,10 @@ use List::Util qw/shuffle/;
 no warnings 'experimental';
 
 my $help = 0;
-GetOptions ('help' => \$help,);
+my $easier_mode = 0;
+GetOptions ('help' => \$help,
+			'c' => \$easier_mode
+) or die("Błąd podczas parsowania argumentów. Użyj --help aby zobaczyć pomoc.");
 $help and &ShowHelp();
 
 my ($miss, $guesses, $guess, @blanks, $tries, @guessed, @wordbank, $letter);
@@ -70,7 +73,6 @@ sub get_guess{
 	while(1) {
 		print "Podaj literę:\n";
 		$guess = <>;
-		$guess = lc($guess);
 		chomp($guess);
 		if (length($guess) != 1) {
 			print "Podaj tylko jedną literę.\n";
@@ -121,19 +123,32 @@ print "#### Wisielec ####\n";
 
 my @missed_letters = ("");
 my @correct_letters = ("");
-my $secret_word = get_random_word(\@wordbank);
+# my $secret_word = get_random_word(\@wordbank);
+my $secret_word = "Testing";
 my $game_is_done = ""; # false
 
 while (1) {
 	display_board(\@Pics::hangmanpics, \@missed_letters, \@correct_letters, \$secret_word);
+	print $secret_word;
 
 	my @tmp_array = ();
 	push @tmp_array, @missed_letters;
 	push @tmp_array, @correct_letters;
 	my $guess = get_guess(\@tmp_array);
+	my $opposite_case_guess = "";
 
-	if (index($secret_word, $guess) != -1) {
+	if ($guess =~ /[A-Z]/) {
+		$opposite_case_guess = lc $guess;
+	} else {
+		$opposite_case_guess = uc $guess;
+	}
 
+	if (index($secret_word, $guess) != -1
+			or $easier_mode and index($secret_word, $opposite_case_guess) != -1) {
+
+		if ($easier_mode) {
+			push @correct_letters, $opposite_case_guess;
+		}
 		push @correct_letters, $guess;
 
 		# check if the player has won
