@@ -20,6 +20,8 @@ sub ShowHelp {
 	print "# pojedyńczych liter. W przypadku zbyt wielu pomyłek gra zostaje  #\n";
 	print "# zakończona.                                                     #\n";
 	print "# Gra pobiera losowe angielskie słowa z /usr/share/dict/words     #\n";
+	print "# Opcje: [-c] - wyłączenie znaczenia wielkości liter. Domyślnie   #\n";
+	print "# wielkość liter ma znaczenie.                                    #\n";
 	print "###################################################################\n\n";
 	exit;
 }
