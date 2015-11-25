@@ -123,8 +123,7 @@ print "#### Wisielec ####\n";
 
 my @missed_letters = ("");
 my @correct_letters = ("");
-# my $secret_word = get_random_word(\@wordbank);
-my $secret_word = "Testing";
+my $secret_word = get_random_word(\@wordbank);
 my $game_is_done = ""; # false
 
 while (1) {
