@@ -74,10 +74,10 @@ sub get_guess{
 		chomp($guess);
 		if (length($guess) != 1) {
 			print "Podaj tylko jedną literę.\n";
+		} elsif (index("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM", $guess) == -1) {
+			print "Wybierz LITERĘ.\n";
 		} elsif ($guess ~~ @already_guessed) {
 			print "Ta litera już została użyta. Wybierz jeszcze raz.\n";
-		} elsif (!$guess ~~ split //, "qwertyuiopasdfghjklzxcvbnm") {
-			print "Wybierz LITERĘ.\n";
 		} else {
 			return $guess;
 		}
