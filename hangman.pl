@@ -97,7 +97,14 @@ sub playAgain{
 sub generate_words{
 	my $wordlist = '/usr/share/dict/words';
 
-	my $length = 10;
+	my $left_range = 7;
+	my $right_range = 10;
+
+	if ($easier_mode) {
+		$left_range = 4;
+		$right_range = 7;
+	}	
+	
 	my $numwords = 10;
 
 	my @words;
@@ -106,7 +113,8 @@ sub generate_words{
 
 	while (my $word = <WORDS>) {
 		chomp($word);
-		if (length($word) == $length and index($word, "'") == -1) {
+		my $word_length = length($word);
+		if ($word_length > $left_range and $word_length < $right_range and index($word, "'") == -1) {
 			push @words, $word;
 		}
 	}
