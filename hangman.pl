@@ -13,8 +13,10 @@ no warnings 'experimental';
 
 my $help = 0;
 my $easier_mode = 0;
+my $shorter_words_mode = 0;
 GetOptions ('help' => \$help,
-			'c' => \$easier_mode
+			'c' => \$easier_mode,
+			'r' => \$shorter_words_mode
 ) or die("Błąd podczas parsowania argumentów. Użyj --help aby zobaczyć pomoc.");
 $help and &ShowHelp();
 
