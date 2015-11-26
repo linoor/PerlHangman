@@ -104,9 +104,9 @@ sub generate_words{
 	my $left_range = 7;
 	my $right_range = 10;
 
-	if ($easier_mode) {
+	if ($shorter_words_mode) {
 		$left_range = 4;
-		$right_range = 7;
+		$right_range = 6;
 	}	
 	
 	my $numwords = 10;
