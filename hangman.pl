@@ -97,6 +97,10 @@ sub playAgain{
 sub generate_words{
 	my $wordlist = '/usr/share/dict/words';
 
+	unless (-e $wordlist) {
+		die("Plik $wordlist nie istnieje. Spróbuj zainstalować paczkę wordlist/words");
+	}
+
 	my $left_range = 7;
 	my $right_range = 10;
 
